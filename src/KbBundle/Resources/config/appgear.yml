@@ -1,0 +1,143 @@
+models:
+
+  category:
+    toString: name
+    properties:
+      id:
+        field:
+          type: app_gear.core_bundle.entity.property.field.integer
+          extensions:
+          - type: app_gear.app_bundle.entity.storage.column
+            identifier: true
+      name:
+        field:
+          type: app_gear.core_bundle.entity.property.field.string
+
+  note:
+    toString: name
+    properties:
+      id:
+        field:
+          type: app_gear.core_bundle.entity.property.field.integer
+          extensions:
+          - type: app_gear.app_bundle.entity.storage.column
+            identifier: true
+      name:
+        field:
+          type: app_gear.core_bundle.entity.property.field.string
+      url:
+        field:
+          type: app_gear.core_bundle.entity.property.field.string
+      description:
+        field:
+          type: app_gear.core_bundle.entity.property.field.string
+      category:
+        relationship:
+          type: app_gear.core_bundle.entity.property.relationship.toOne
+          target: category
+
+  view.container_view:
+    parent: app_gear.app_bundle.entity.view.container_view
+    properties:
+      content:
+        relationship:
+          type: app_gear.core_bundle.entity.property.relationship.toOne
+          target: app_gear.app_bundle.entity.view
+      menu:
+        relationship:
+          type: app_gear.core_bundle.entity.property.relationship.toOne
+          target: app_gear.app_bundle.entity.view.list_view
+
+routings:
+
+  feed:
+    pattern: /feed/{page}
+    controller: appgear.controller.crud:viewAction
+    defaults:
+      page: 1
+      _view:
+        _model: app_gear.kb_bundle.entity.view.container_view
+        template: "@AppGearKb/site.html.twig"
+        content:
+          _model: app_gear.app_bundle.entity.view.list_view
+          entities:
+            _model: app_gear.kb_bundle.entity.note
+          template: "@AppGearKb/Feed.html.twig"
+        menu:
+          _model: app_gear.app_bundle.entity.view.list_view
+          entities:
+            _model:    app_gear.kb_bundle.entity.category
+          template: "@AppGearKb/Menu.html.twig"
+    requirements:
+      page: \d+
+    methods: [GET]
+
+  category:
+    pattern: /category/{id}
+    controller: appgear.controller.crud:viewAction
+    defaults:
+      page: 1
+      _view:
+        _model: app_gear.kb_bundle.entity.view.container_view
+        template: "@AppGearKb/site.html.twig"
+        content:
+          _model: app_gear.app_bundle.entity.view.list_view
+          entities:
+            _model: app_gear.kb_bundle.entity.note
+            _expression: "category == {id}"
+          template: "@AppGearKb/Feed.html.twig"
+        menu:
+          _model: app_gear.app_bundle.entity.view.list_view
+          entities:
+            _model:      app_gear.kb_bundle.entity.category
+          template: "@AppGearKb/Menu.html.twig"
+    requirements:
+      id: \d+
+    methods: [GET]
+
+  read:
+    pattern: /{id}
+    controller: appgear.controller.crud:viewAction
+    defaults:
+      _view:
+        _model: app_gear.kb_bundle.entity.view.container_view
+        template: "@AppGearKb/site.html.twig"
+        content:
+          _model: app_gear.app_bundle.entity.view.model_view.detail_view
+          model:
+            _id:    app_gear.kb_bundle.entity.note
+          id: "{id}"
+          template: "@AppGearKb/Read.html.twig"
+    requirements:
+      id: \d+
+    methods: [GET]
+
+  create:
+    pattern: /create
+    controller: appgear.controller.crud:formAction
+    defaults:
+      _model: app_gear.kb_bundle.entity.note
+      _form_view_path: content
+      _view:
+        _model: app_gear.kb_bundle.entity.view.container_view
+        template: "@AppGearKb/site.html.twig"
+        content:
+          _model: app_gear.app_bundle.entity.view.model_view.form_view
+          template: "@AppGearKb/Form.html.twig"
+    methods: [GET, POST]
+
+  edit:
+    pattern: /edit/{id}
+    controller: appgear.controller.crud:formAction
+    defaults:
+      _model: app_gear.kb_bundle.entity.note
+      _form_view_path: content
+      _view:
+        _model: app_gear.kb_bundle.entity.view.container_view
+        template: "@AppGearKb/site.html.twig"
+        content:
+          _model: app_gear.app_bundle.entity.view.model_view.form_view
+          template: "@AppGearKb/Form.html.twig"
+    requirements:
+      id: \d+
+    methods: [GET, POST]

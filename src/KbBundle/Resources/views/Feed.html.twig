@@ -1,0 +1,9 @@
+<div>
+    {% for entity in view.entities %}
+        <div>
+            <h3><a href="{{ path('app_gear.kb_bundle.read', {'id': entity.id}) }}">{{ entity.name }}</a></h3>
+            {{ entity.description|markdown }}
+            <a href="{{ path('app_gear.kb_bundle.edit', {'id': entity.id}) }}" class="small text-muted">Редактировать</a>
+        </div>
+    {% endfor %}
+</div>

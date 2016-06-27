@@ -1,0 +1,26 @@
+appgear_view_site:
+    pattern: /
+    defaults:
+      _controller: AppGearPlatformBundle:Main:entryPoint
+      controllerModelId: 92
+      view_id: 8
+      view_entity_id: 3
+    methods: [GET]
+
+appgear_view_site_category:
+    pattern: /c/{view_entity_entity_id}
+    defaults:
+      _controller: AppGearPlatformBundle:Main:entryPoint
+      controllerModelId: 92
+      view_id: 8
+      view_entity_id: 14
+    methods: [GET]
+
+appgear_view_site_entity:
+    pattern: /e/{view_entity_entity_id}
+    defaults:
+      _controller: AppGearPlatformBundle:Main:entryPoint
+      controllerModelId: 92
+      view_id: 8
+      view_entity_id: 10
+    methods: [GET]

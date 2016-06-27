@@ -1,0 +1,14 @@
+{
+    "name": "appgear/kbbundle",
+    "type": "library",
+    "description": "AppGearKbBundle",
+    "license": "MIT",
+    "require": {
+    },
+
+    "autoload": {
+        "psr-4": {
+            "AppGear\\KbBundle\\": "src/KbBundle/"
+        }
+    }
+}

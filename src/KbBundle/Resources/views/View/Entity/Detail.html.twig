@@ -1,0 +1,8 @@
+<div class="inline-headers">
+    <h2>{{ entity.name }}</h2>
+</div>
+
+{# Description #}
+{% if entity.body|length %}
+    {{ entity.body|markdown }}
+{% endif %}

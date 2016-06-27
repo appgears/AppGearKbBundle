@@ -1,0 +1,9 @@
+{% extends 'AppGearPlatformBundle:View:Collection\\News.html.twig' %}
+
+{% block header %}
+{% endblock %}
+
+{% block item %}
+    <h3><a href="{{ path('appgear_view_site_entity', {view_entity_entity_id: item.id}) }}">{{ item.name }}</a></h3>
+    {{ item.body|markdown }}
+{% endblock %}

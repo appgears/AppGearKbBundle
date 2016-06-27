@@ -1,0 +1,35 @@
+{% if view.entities|length %}
+    <div class="row">
+        <div class="span3">
+            <div class="well">
+                <ul class="nav nav-list">
+
+                    {% for entity in view.entities %}
+                        <li class="first">
+                            <a href="{{ path('app_gear.kb_bundle.category', {id: entity.id}) }}">{{ entity.name }}</a>
+                            <ul class="nav nav-list tree menu_level_1">
+                                {#{% for subcategory in entity.getChildren %}#}
+                                    {#<li class="first">#}
+                                        {#<a href="{{ path('appgear_view_site_category', {view_entity_entity_id: subcategory.id}) }}">{{ subcategory.name }}</a>#}
+
+                                        {#{% if subcategory.children|length %}#}
+                                            {#<ul class="nav nav-list tree menu_level_2">#}
+                                                {#{% for subsubcategory in subcategory.children %}#}
+                                                    {#<li class="first">#}
+                                                        {#<a href="{{ path('appgear_view_site_category', {view_entity_entity_id: subcategory.id}) }}">{{ subsubcategory.name }}</a>#}
+                                                    {#</li>#}
+                                                {#{% endfor %}#}
+                                            {#</ul>#}
+                                        {#{% endif %}#}
+
+                                    {#</li>#}
+                                {#{% endfor %}#}
+                            </ul>
+                        </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endif %}

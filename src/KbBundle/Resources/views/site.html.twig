@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Коллективная база знаний Pickbox.ru{% endblock %}</title>
+
+    <link rel="shortcut icon" href="/favicon32.ico">
+    <link rel="icon" href="/favicon32.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//pickbox.ru/css/style.css" rel="stylesheet">
+    {#<link href="/css/bootstrap-responsive.css" rel="stylesheet">#}
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements --><!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script><![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link href="http://www.bootply.com/bootply/bootply.css" type="text/css" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<!-- Wrap all page content here -->
+<div id="wrap">
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">Pickbox</a>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                {% if app.user is null %}
+                    <form class="navbar-form navbar-right" action="{{ path('appgear_security_login') }}" method="post">
+                        <div class="form-group">
+                            <input type="text" name="_username" placeholder="Имя пользователя" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="_password" placeholder="Пароль" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Вход</button>
+                        <span>&nbsp;или&nbsp;</span>
+                        <button type="submit" class="btn btn-primary">Регистрация</button>
+
+                        <a href="{{ path('app_gear.kb_bundle.create') }}" class="btn btn-primary input-block-level">Добавить публикацию</a>
+                    </form>
+                {% else %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{ app.user.username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('logout') }}">Выход</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container" styl1e="margin-top: 80px">
+
+        <div class="col-xs-12 col-sm-9">
+            {{ view.content|view_render|raw }}
+        </div>
+
+        <div role="navigation" id="sidebar" class="col-xs-6 col-sm-3 sidebar-offcanvas"
+             style="margin-top:20px; padding-left:30px; padding-right:0px;">
+            {% if view.menu is not null %}
+                {{ view.menu|view_render|raw }}
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+<div id="footer">
+    <div class="container">
+        <div class="counter">
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <script type="text/javascript"><!--
+                    document.write("<a href='http://www.liveinternet.ru/click' " +
+                            "target=_blank><img src='//counter.yadro.ru/hit?t14.1;r" +
+                            escape(document.referrer) + ((typeof(screen) == "undefined") ? "" :
+                            ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ?
+                                    screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
+                            ";" + Math.random() +
+                            "' alt='' title='LiveInternet: показано число просмотров за 24" +
+                            " часа, посетителей за 24 часа и за сегодня' " +
+                            "border='0' width='88' height='31'><\/a>")
+                    //--></script>
+            {% else %}
+                <script type="text/javascript"><!--
+                    document.write("<a href='http://www.liveinternet.ru/click' " +
+                            "target=_blank><img src='//counter.yadro.ru/hit?t44.1;r" +
+                            escape(document.referrer) + ((typeof(screen) == "undefined") ? "" :
+                            ";s" + screen.width + "*" + screen.height + "*" + (screen.colorDepth ?
+                                    screen.colorDepth : screen.pixelDepth)) + ";u" + escape(document.URL) +
+                            ";" + Math.random() +
+                            "' alt='' title='LiveInternet: показано число просмотров за 24" +
+                            " часа, посетителей за 24 часа и за сегодня' " +
+                            "border='0' width='31' height='31'><\/a>")
+                    //--></script>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
