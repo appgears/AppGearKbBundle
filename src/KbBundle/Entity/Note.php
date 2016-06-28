@@ -31,14 +31,6 @@ class Note
     protected $category;
     
     /**
-     * Get id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    
-    /**
      * Set id
      */
     public function setId($id)
@@ -48,11 +40,11 @@ class Note
     }
     
     /**
-     * Get name
+     * Get id
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
     
     /**
@@ -65,11 +57,11 @@ class Note
     }
     
     /**
-     * Get url
+     * Get name
      */
-    public function getUrl()
+    public function getName()
     {
-        return $this->url;
+        return $this->name;
     }
     
     /**
@@ -82,11 +74,11 @@ class Note
     }
     
     /**
-     * Get description
+     * Get url
      */
-    public function getDescription()
+    public function getUrl()
     {
-        return $this->description;
+        return $this->url;
     }
     
     /**
@@ -99,11 +91,11 @@ class Note
     }
     
     /**
-     * Get category
+     * Get description
      */
-    public function getCategory()
+    public function getDescription()
     {
-        return $this->category;
+        return $this->description;
     }
     
     /**
@@ -113,6 +105,14 @@ class Note
     {
         $this->category = $category;
         return $this;
+    }
+    
+    /**
+     * Get category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
     public function __toString()
     {

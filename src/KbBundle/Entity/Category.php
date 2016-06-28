@@ -16,14 +16,6 @@ class Category
     protected $name;
     
     /**
-     * Get id
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    
-    /**
      * Set id
      */
     public function setId($id)
@@ -33,11 +25,11 @@ class Category
     }
     
     /**
-     * Get name
+     * Get id
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
     
     /**
@@ -47,6 +39,14 @@ class Category
     {
         $this->name = $name;
         return $this;
+    }
+    
+    /**
+     * Get name
+     */
+    public function getName()
+    {
+        return $this->name;
     }
     public function __toString()
     {
