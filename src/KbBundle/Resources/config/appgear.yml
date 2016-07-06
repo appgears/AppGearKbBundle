@@ -103,7 +103,7 @@ routings:
         _model: app_gear.kb_bundle.entity.view.container_view
         template: "@AppGearKb/site.html.twig"
         content:
-          _model: app_gear.app_bundle.entity.view.model_view.detail_view
+          _model: app_gear.app_bundle.entity.view.detail_view
           model:
             _id:    app_gear.kb_bundle.entity.note
           id: "{id}"
@@ -122,7 +122,7 @@ routings:
         _model: app_gear.kb_bundle.entity.view.container_view
         template: "@AppGearKb/site.html.twig"
         content:
-          _model: app_gear.app_bundle.entity.view.model_view.form_view
+          _model: app_gear.app_bundle.entity.view.form_view
           template: "@AppGearKb/Form.html.twig"
     methods: [GET, POST]
 
@@ -136,7 +136,7 @@ routings:
         _model: app_gear.kb_bundle.entity.view.container_view
         template: "@AppGearKb/site.html.twig"
         content:
-          _model: app_gear.app_bundle.entity.view.model_view.form_view
+          _model: app_gear.app_bundle.entity.view.form_view
           template: "@AppGearKb/Form.html.twig"
     requirements:
       id: \d+
